@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="topo">
+    <h1>{{ jogo.nome }}</h1>
+    <div class="topo-acoes">
+        <a href="{{ url_for('index') }}" class="btn">← Voltar</a>
+        <a href="{{ url_for('editar', id=jogo.id) }}" class="btn btn-editar">✏️ Editar</a>
+        <form method="POST" action="{{ url_for('deletar', id=jogo.id) }}" onsubmit="return confirm('Tem certeza que deseja deletar este jogo?')">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-deletar">🗑️ Deletar</button>
+        </form>
+    </div>
+</div>
+
+<div class="painel" style="display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap;">
+
+    {% if jogo.capa %}
+    <img src="{{ url_for('static', filename=jogo.capa) }}" alt="Capa de {{ jogo.nome }}" class="jogo-capa">
+    {% else %}
+    <div class="jogo-capa-placeholder">🎮</div>
+    {% endif %}
+
+    <div style="flex:1;min-width:200px;">
+        <p style="margin-bottom:12px;"><strong>Descrição:</strong> {{ jogo.descricao }}</p>
+        <p style="margin-bottom:12px;"><strong>Gênero:</strong> {{ jogo.genero }}</p>
+        <p style="margin-bottom:12px;"><strong>Categoria:</strong> {{ jogo.categoria }}</p>
+        <p style="margin-bottom:12px;"><strong>Classificação:</strong> {{ jogo.classificacao }}</p>
+        <p style="margin-bottom:12px;"><strong>Ano:</strong> {{ jogo.ano }}</p>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="topo">
+    <div>
+        <h1>🎮 GameVerse</h1>
+    </div>
+    <a href="{{ url_for('cadastrar') }}" class="btn">+ Cadastrar Jogo</a>
+</div>
+
+<div class="painel">
+    <form method="GET" action="/">
+        <div class="filtros">
+            <input
+                type="text"
+                name="nome"
+                placeholder="🔍 Pesquisar por nome..."
+                value="{{ request.args.get('nome', '') }}"
+                autocomplete="off"
+            >
+
+            <select name="genero">
+                <option value="">Todos os gêneros</option>
+                {% for g in generos %}
+                <option value="{{ g }}" {% if request.args.get('genero') == g %}selected{% endif %}>{{ g }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="categoria">
+                <option value="">Todas as categorias</option>
+                {% for c in categorias %}
+                <option value="{{ c }}" {% if request.args.get('categoria') == c %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="classificacao">
+                <option value="">Qualquer classificação</option>
+                {% for cl in classificacoes %}
+                <option value="{{ cl }}" {% if request.args.get('classificacao') == cl %}selected{% endif %}>{{ cl }}</option>
+                {% endfor %}
+            </select>
+
+            <input
+                type="number"
+                name="ano"
+                placeholder="Ano (ex: 2021)"
+                value="{{ request.args.get('ano', '') }}"
+                min="1970"
+                max="2099"
+            >
+
+            <button type="submit">Filtrar</button>
+
+            {% if request.args %}
+            <a href="/" class="btn" style="text-align:center;padding:14px;">✕ Limpar</a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+<p class="subtitulo" style="margin-bottom:20px;">
+    {{ jogos|length }} jogo(s) encontrado(s)
+</p>
+
+<div class="grid">
+{% for jogo in jogos %}
+<div class="card-wrapper">
+    <a href="{{ url_for('jogo', id=jogo.id) }}" style="text-decoration:none;color:inherit;">
+        <div class="card">
+            {% if jogo.capa %}
+            <img src="{{ url_for('static', filename=jogo.capa) }}" alt="Capa de {{ jogo.nome }}" class="card-capa">
+            {% else %}
+            <div class="card-capa-placeholder">🎮</div>
+            {% endif %}
+            <div class="card-top">
+                <span class="tag">{{ jogo.genero }}</span>
+                <span class="ano">{{ jogo.ano }}</span>
+            </div>
+            <h2>{{ jogo.nome }}</h2>
+            <p class="descricao">{{ jogo.descricao }}</p>
+            <div class="infos">
+                <span>{{ jogo.categoria }}</span>
+                <span>{{ jogo.classificacao }}</span>
+            </div>
+        </div>
+    </a>
+    <div class="card-acoes">
+        <a href="{{ url_for('editar', id=jogo.id) }}" class="btn-card btn-card-editar">✏️ Editar</a>
+        <form method="POST" action="{{ url_for('deletar', id=jogo.id) }}" onsubmit="return confirm('Deletar {{ jogo.nome }}?')">
+            <button type="submit" class="btn-card btn-card-deletar">🗑️ Deletar</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<p style="opacity:.6;grid-column:1/-1;">Nenhum jogo encontrado com esses filtros.</p>
+{% endfor %}
+</div>
+
+{% endblock %}

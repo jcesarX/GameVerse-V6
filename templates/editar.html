@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="topo">
+    <h1>✏️ Editar Jogo</h1>
+    <a href="{{ url_for('jogo', id=jogo.id) }}" class="btn">← Voltar</a>
+</div>
+
+<div class="painel">
+    <form method="POST" enctype="multipart/form-data" class="cadastro-form">
+        <input type="hidden" name="_method" value="PUT">
+
+        <input type="text" name="nome" placeholder="Nome do jogo" value="{{ jogo.nome }}" required>
+
+        <input type="text" name="descricao" placeholder="Descrição do jogo" value="{{ jogo.descricao }}" required>
+
+        <select name="genero" required>
+            <option value="">Selecione um gênero</option>
+            {% for genero in generos %}
+            <option value="{{ genero }}" {% if jogo.genero == genero %}selected{% endif %}>{{ genero }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="categoria" required>
+            <option value="">Selecione uma categoria</option>
+            {% for categoria in categorias %}
+            <option value="{{ categoria }}" {% if jogo.categoria == categoria %}selected{% endif %}>{{ categoria }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="classificacao" required>
+            <option value="">Selecione a classificação</option>
+            {% for classificacao in classificacoes %}
+            <option value="{{ classificacao }}" {% if jogo.classificacao == classificacao %}selected{% endif %}>{{ classificacao }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="number" name="ano" placeholder="Ano de lançamento" value="{{ jogo.ano }}" required>
+
+        {% if jogo.capa %}
+        <div class="capa-atual">
+            <p style="opacity:.7;font-size:.9rem;">Capa atual:</p>
+            <img src="{{ url_for('static', filename=jogo.capa) }}" alt="Capa atual" class="capa-preview">
+        </div>
+        {% endif %}
+
+        <label class="label-capa">
+            🖼️ Nova Imagem de Capa (opcional — substitui a atual)
+            <input type="file" name="capa" accept="image/*">
+        </label>
+
+        <button type="submit">💾 Salvar Alterações</button>
+
+    </form>
+</div>
+{% endblock %}

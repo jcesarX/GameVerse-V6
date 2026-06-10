@@ -1,0 +1,306 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(circle at top,#1e1b4b,#050816 60%);
+    color:white;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    padding:30px;
+}
+
+.topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    gap:20px;
+}
+
+h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:3rem;
+    color:#7c3aed;
+    text-shadow:0 0 15px #7c3aed;
+}
+
+.subtitulo{
+    opacity:.7;
+    margin-top:5px;
+}
+
+.btn{
+    background:linear-gradient(45deg,#7c3aed,#2563eb);
+    color:white;
+    text-decoration:none;
+    padding:14px 20px;
+    border-radius:14px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.painel{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    padding:20px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    margin-bottom:30px;
+}
+
+.filtros{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
+}
+
+input,
+select,
+button{
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    background:#111827;
+    color:white;
+}
+
+button{
+    background:linear-gradient(45deg,#9333ea,#2563eb);
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    padding:20px;
+    border-radius:22px;
+    transition:.3s;
+    backdrop-filter:blur(8px);
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:150%;
+    height:4px;
+    background:linear-gradient(90deg,#7c3aed,#2563eb);
+    top:0;
+    left:-20%;
+}
+
+.card:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:0 0 25px rgba(124,58,237,.4);
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.tag{
+    background:#7c3aed;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:.8rem;
+}
+
+.ano{
+    opacity:.7;
+}
+
+.card h2{
+    margin-bottom:15px;
+    font-size:1.5rem;
+}
+
+.descricao{
+    opacity:.8;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.infos{
+    display:flex;
+    justify-content:space-between;
+    opacity:.85;
+    font-size:.9rem;
+}
+
+.card-capa {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    margin-bottom: 15px;
+}
+
+.card-capa-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: rgba(124, 58, 237, 0.15);
+    border-radius: 14px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.jogo-capa {
+    width: 260px;
+    height: auto;
+    border-radius: 18px;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+}
+
+.jogo-capa-placeholder {
+    width: 260px;
+    height: 340px;
+    background: rgba(124, 58, 237, 0.15);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+
+.label-capa {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+.label-capa input[type="file"] {
+    background: #111827;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.card-acoes {
+    display: flex;
+    gap: 10px;
+    padding: 10px 4px 0;
+}
+
+.btn-card {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: .85rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: .25s;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-card-editar {
+    background: rgba(37, 99, 235, 0.25);
+    color: #93c5fd;
+    border: 1px solid rgba(37, 99, 235, 0.4);
+}
+
+.btn-card-editar:hover {
+    background: rgba(37, 99, 235, 0.45);
+    transform: scale(1.03);
+}
+
+.btn-card-deletar {
+    background: rgba(220, 38, 38, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    width: 100%;
+}
+
+.btn-card-deletar:hover {
+    background: rgba(220, 38, 38, 0.4);
+    transform: scale(1.03);
+}
+
+.topo-acoes {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-editar {
+    background: linear-gradient(45deg, #1d4ed8, #3b82f6);
+}
+
+.btn-deletar {
+    background: linear-gradient(45deg, #b91c1c, #ef4444);
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+    font-size: 1rem;
+}
+
+.btn-deletar:hover {
+    transform: scale(1.05);
+}
+
+.capa-atual {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.capa-preview {
+    width: 160px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+    border: 2px solid rgba(124, 58, 237, 0.4);
+    background: rgba(0, 0, 0, 0.25);
+}

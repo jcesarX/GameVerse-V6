@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="topo">
+    <h1>➕ Cadastrar Novo Jogo</h1>
+    <a href="{{ url_for('index') }}" class="btn">← Voltar</a>
+</div>
+
+<div class="painel">
+    <form method="POST" enctype="multipart/form-data" class="cadastro-form">
+
+        <input type="text" name="nome" placeholder="Nome do jogo" required>
+
+        <input type="text" name="descricao" placeholder="Descrição do jogo" required>
+
+        <select name="genero" required>
+            <option value="">Selecione um gênero</option>
+            {% for genero in generos %}
+            <option value="{{ genero }}">{{ genero }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="categoria" required>
+            <option value="">Selecione uma categoria</option>
+            {% for categoria in categorias %}
+            <option value="{{ categoria }}">{{ categoria }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="classificacao" required>
+            <option value="">Selecione a classificação</option>
+            {% for classificacao in classificacoes %}
+            <option value="{{ classificacao }}">{{ classificacao }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="number" name="ano" placeholder="Ano de lançamento" required>
+
+        <label class="label-capa">
+            🖼️ Imagem de Capa (opcional)
+            <input type="file" name="capa" accept="image/*">
+        </label>
+
+        <button type="submit">Cadastrar Jogo</button>
+
+    </form>
+</div>
+{% endblock %}
